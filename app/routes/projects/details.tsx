@@ -2,9 +2,10 @@ import type { Project } from "~/types";
 import type { Route } from "./+types/details";
 import { Link } from "react-router";
 import { FaArrowLeft } from "react-icons/fa";
+const API_URL = import.meta.env.VITE_API_URL
 
 export async function clientLoader({ request, params }: Route.ClientLoaderArgs): Promise<Project> {
-  const res = await fetch(`http://localhost:8000/projects/${params.id}`)
+  const res = await fetch(`${API_URL}/${params.id}`)
   if (!res.ok)
     throw new Response('Project not found', { status: 404 })
   const data = await res.json()
