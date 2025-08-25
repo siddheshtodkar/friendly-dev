@@ -36,8 +36,8 @@ const ProjectsPage = ({ loaderData }: Route.ComponentProps) => {
     <>
       <h2 className="text-3xl font-bold text-white mb-8">Projects</h2>
       <div className="flex flex-wrap gap-2 mb-8">
-        {categories.map(category => (
-          <button key={category} onClick={() => changeCategory(category)}
+        {categories.map((category, i) => (
+          <button key={i} onClick={() => changeCategory(category)}
             className={`px-3 py-1 rounded text-sm cursor-pointer ${selectedCategory === category ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-200'}`}>
             {category}
           </button>

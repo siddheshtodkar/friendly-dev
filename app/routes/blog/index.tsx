@@ -8,6 +8,9 @@ export async function loader({ request }: Route.LoaderArgs): Promise<{ posts: Po
   if (!res.ok)
     throw new Error('Failed to fetch Posts')
   const data = await res.json()
+  data.sort((a: Post, b: Post) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime()
+  })
   return { posts: data }
 }
 
