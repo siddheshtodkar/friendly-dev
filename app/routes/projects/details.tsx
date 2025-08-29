@@ -1,15 +1,28 @@
-import type { Project } from "~/types";
+import type { Project, StrapiProject, StrapiResponse } from "~/types";
 import type { Route } from "./+types/details";
 import { Link } from "react-router";
 import { FaArrowLeft } from "react-icons/fa";
 const API_URL = import.meta.env.VITE_API_URL
+const STRAPI_URL = import.meta.env.VITE_STRAPI_API_URL
 
 export async function clientLoader({ request, params }: Route.ClientLoaderArgs): Promise<Project> {
-  const res = await fetch(`${API_URL}/${params.id}`)
+  const res = await fetch(`${API_URL}/projects?filters[documentId][$eq]=${params.id}&populate=*`)
   if (!res.ok)
     throw new Response('Project not found', { status: 404 })
-  const data = await res.json()
-  return data
+  const json: StrapiResponse<StrapiProject> = await res.json()
+  const project = json.data.map(item => ({
+    id: item.id,
+    documentId: item.documentId,
+    title: item.title,
+    description: item.description,
+    url: item.url,
+    date: item.date,
+    category: item.category,
+    featured: item.featured,
+    image: item.image?.url ? `${STRAPI_URL}${item.image.url}` : '/images/no-image.png'
+  }))
+  const [firstItem] = project
+  return firstItem
 }
 
 export function HydrateFallback() {

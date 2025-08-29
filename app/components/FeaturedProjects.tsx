@@ -7,7 +7,9 @@ type FeaturedProjectsProps = {
 }
 
 const FeaturedProjects = ({ projects, count = 2 }: FeaturedProjectsProps) => {
-  const featuredProjects = projects.filter(project => project.featured === true).slice(0, count)
+  // const featuredProjects = projects.filter(project => project.featured === true).slice(0, count)
+  const featuredProjects = projects.slice(0, count)
+  if(featuredProjects.length==0) return null
   return (
     <section>
       <h2 className="text-2xl font-bold mb-6 text-gray-200">Featured Projects</h2>

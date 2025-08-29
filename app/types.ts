@@ -6,7 +6,8 @@ export type Project = {
   url: string,
   date: string,
   category: string,
-  featured: boolean
+  featured: boolean,
+  documentId: string
 }
 
 export type Post = {
@@ -15,4 +16,22 @@ export type Post = {
   slug: string,
   excerpt: string,
   date: string
+}
+
+export type StrapiProject = {
+  id: string,
+  documentId: string,
+  title: string,
+  description: string,
+  image?: {
+    url: string
+  },
+  url: string,
+  date: string,
+  category: string,
+  featured: boolean
+}
+
+export type StrapiResponse<T> = {
+  data: T[]
 }
