@@ -19,7 +19,8 @@ export async function clientLoader({ request, params }: Route.ClientLoaderArgs):
     date: item.date,
     category: item.category,
     featured: item.featured,
-    image: item.image?.url ? `${STRAPI_URL}${item.image.url}` : '/images/no-image.png'
+    // image: item.image?.url ? `${STRAPI_URL}${item.image.url}` : '/images/no-image.png'
+    image: item.image?.url ? item.image.url : '/images/no-image.png'
   }))
   const [firstItem] = project
   return firstItem

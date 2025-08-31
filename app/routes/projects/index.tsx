@@ -19,7 +19,8 @@ export async function loader({ request }: Route.LoaderArgs): Promise<{ projects:
     date: item.date,
     category: item.category,
     featured: item.featured,
-    image: item.image?.url ? `${STRAPI_URL}${item.image.url}` : '/images/no-image.png'
+    // image: item.image?.url ? `${STRAPI_URL}${item.image.url}` : '/images/no-image.png'
+    image: item.image?.url ? item.image.url : '/images/no-image.png'
   }))
   return { projects }
 }

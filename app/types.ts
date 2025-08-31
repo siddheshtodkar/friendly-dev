@@ -15,7 +15,9 @@ export type Post = {
   title: string,
   slug: string,
   excerpt: string,
-  date: string
+  date: string,
+  image: string,
+  body: string
 }
 
 export type StrapiProject = {
@@ -30,6 +32,19 @@ export type StrapiProject = {
   date: string,
   category: string,
   featured: boolean
+}
+
+export type StrapiPost = {
+  id: string,
+  title: string,
+  slug: string,
+  excerpt: string,
+  date: string,
+  image?: {
+    url: string
+  },
+  body: string,
+  documentId: string
 }
 
 export type StrapiResponse<T> = {
